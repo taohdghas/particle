@@ -1,7 +1,14 @@
 #include <Novice.h>
+#include "TitleScene.h"
+#include "gamescene.h"
+#include "GameClear.h"
+#include "GameOver.h"
 
 const char kWindowTitle[] = "LE2B_14_サノ_ハヤテ_タイトル";
 
+enum class Scenes{
+	Title,Game,Clear,Over
+};
 // Windowsアプリでのエントリーポイント(main関数)
 int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 
@@ -12,31 +19,32 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 	char keys[256] = {0};
 	char preKeys[256] = {0};
 
+	// シーン管理用の変数
+	Scenes currentScene = Scenes::Title;
+
+	TitleScene titleScene;
+	gamescene gameScene;
+	GameClear gameClearScene;
+	GameOver gameOverScene;
+
+	titleScene.Initialize();
+	gameScene.Initialize();
+	gameClearScene.Initialize();
+	gameOverScene.Initialize();
 	// ウィンドウの×ボタンが押されるまでループ
 	while (Novice::ProcessMessage() == 0) {
 		// フレームの開始
 		Novice::BeginFrame();
-
 		// キー入力を受け取る
 		memcpy(preKeys, keys, 256);
 		Novice::GetHitKeyStateAll(keys);
-
-		///
 		/// ↓更新処理ここから
-		///
-
-		///
+	
 		/// ↑更新処理ここまで
-		///
 
-		///
 		/// ↓描画処理ここから
-		///
 
-		///
 		/// ↑描画処理ここまで
-		///
-
 		// フレームの終了
 		Novice::EndFrame();
 
@@ -45,7 +53,6 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 			break;
 		}
 	}
-
 	// ライブラリの終了
 	Novice::Finalize();
 	return 0;
