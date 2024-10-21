@@ -1,17 +1,27 @@
 #pragma once
 #include "Novice.h"
+#include <vector>
+#include <cstdlib>
+#include <cmath>
+
+struct Particle {
+    float x, y;      
+    float w, h;     
+    float angle;     //蝗櫁ｻ｢隗貞ｺｦ
+    float speedX, speedY;  //遘ｻ蜍暮溷ｺｦ
+    float rotationSpeed;   //蝗櫁ｻ｢騾溷ｺｦ
+    int lifetime;    //謠冗判譎る俣
+    unsigned int color;
+};
+
 class WallcollisionDirection
 {
 public:
-	void Initialize();
+    void Initialize();
+    void Update();
+    void Draw();
+    void OnCollision(float collisionX, float collisionY);
 
-	void Update();
-
-	void Draw();
-
-	// 衝突エフェクトを開始
-	void StartEffect(const Vector3& collisionPoint);
 private:
-
+    std::vector<Particle> particles_; 
 };
-
