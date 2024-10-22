@@ -28,7 +28,7 @@ void WallcollisionDirection::Draw() {
 }
 void WallcollisionDirection::OnCollision(float collisionX, float collisionY) {
     // 衝突位置を基準に生成
-    const int numParticles = 70;  
+    const int numParticles = 20;  
     for (int i = 0; i < numParticles; ++i) {
         Particle particle;
         particle.x = collisionX;
@@ -45,7 +45,7 @@ void WallcollisionDirection::OnCollision(float collisionX, float collisionY) {
         particle.rotationSpeed = static_cast<float>((rand() % 10 - 5) / 10.0f);
         // パーティクルの描画時間
         particle.lifetime = 40 + (rand() % 30);
-        particle.color = 0x76745b;
+        particle.color = 0xCF7067;
         particles_.push_back(particle);
     }
 }
